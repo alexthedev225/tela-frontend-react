@@ -1,0 +1,184 @@
+.navbar-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+    width: 90%;
+  }
+  .navbar-container >* {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 5px solid orange;
+  }
+  .logo-tela {
+    height: 100px;
+  }
+  .navbar-box-container-top {
+    padding: 0.5rem 0 0.5rem 0;
+  }
+  .navbar-box-container-top .button-registration {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 50%;
+  }
+  .navbar-box-container-top .button-registration button {
+    border: none;
+    height: 5rem;
+    width: 12rem;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 25px;
+    background-color: orange;
+    border-radius: 3rem;
+  }
+  .link-container {
+    margin-top: 4rem;
+    padding-bottom: 1rem;
+  }
+  .link-container a {
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+   text-decoration: none;
+  }
+  .link-container a:hover {
+    transition: all ease 0.2s;
+    color: white;
+  }
+  .navbar-container .active {
+    color: white;
+  }
+
+@media screen and (max-width: 1200px){
+  .navbar-box-container-top .button-registration {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .navbar-container {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .navbar-box-container-top .button-registration button {
+    border: none;
+    height: 4rem;
+    width: 9rem;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 20px;
+    background-color: orange;
+    border-radius: 3rem;
+  }
+  .link-container a {
+    font-size: 20px;
+  }
+  .navbar-box-container-top .button-registration {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .link-container a {
+    font-size: 18px;
+  }
+  .navbar-box-container-top .button-registration {
+    width: 55%;
+  }
+}
+@media screen and (max-width: 700px) {
+  /* .navbar-box-container-top .button-registration button {
+    border: none;
+    height: 3rem;
+    width: 8rem;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+    background-color: orange;
+    border-radius: 3rem;
+  } */
+  .logo-tela {
+    height: 80px;
+  }
+  .navbar-box-container-top .button-registration {
+    width: 60%;
+  }
+  .link-container a {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .navbar-box-container-top .button-registration button {
+    border: none;
+    height: 2.5rem;
+    width: 6rem;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: orange;
+    border-radius: 3rem;
+  }
+  .logo-tela {
+    height: 70px;
+  }
+  .navbar-box-container-top .button-registration {
+    width: 50%;
+  }
+  .link-container {
+    margin-top: 3rem;
+  }
+  .link-container a {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .navbar-box-container-top .button-registration button {
+    border: none;
+    height: 2rem;
+    width: 5rem;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 12px;
+    background-color: orange;
+    border-radius: 3rem;
+  }
+  .navbar-box-container-top .button-registration {
+    width: 45%;
+  }
+  .logo-tela {
+    height: 60px;
+  }
+  .link-container {
+    margin-top: 1.5rem;
+  }
+  .link-container a {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .navbar-box-container-top .button-registration button {
+    border: none;
+    height: 2rem;
+    width: 4.5rem;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 10px;
+    background-color: orange;
+    border-radius: 3rem;
+  }
+  .navbar-box-container-top .button-registration {
+    width: 50%;
+  }
+  .link-container a {
+    font-size: 10px;
+  }
+  .logo-tela {
+    height: 60px;
+  }
+}
