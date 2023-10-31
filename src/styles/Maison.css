@@ -30,6 +30,111 @@
     text-align: center;
     color: orange;
 }
+
+.popup-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fond flou */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Assure que la popup est au premier plan */
+  }
+  
+  .popup {
+    background: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+  }
+  
+  .popup button {
+    margin: 10px;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .location-button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .location-button.left {
+    background-color: #3498db; /* Couleur pour "Logement" */
+    border: 1px solid black;
+    color: white;
+  }
+  
+  .location-button.right {
+    border: 1px solid black;
+    background-color: #3498db; /* Couleur pour "Bureau" */
+    color: white;
+  }
+  
+  .close-button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .table-container {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+  }
+  
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #fff;
+  }
+  .select-container select option:first-child {
+    display: none;
+  }
+/* Utilisation de Flexbox pour gérer la largeur des colonnes */
+tr {
+    display: flex;
+  }
+  
+  td:first-child {
+    flex: 1; /* La première colonne prend tout l'espace */
+  }
+  
+  td:not(:first-child) {
+    flex: 1; /* Les autres colonnes prennent 50% de l'espace */
+  }
 @media screen and (max-width: 800px) {
     .maison-image-1 {
         height: 400px;
