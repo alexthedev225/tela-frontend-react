@@ -2,20 +2,49 @@ import { useState } from "react";
 import RootLayout from "../Layout";
 import "../styles/Maison.css";
 
+const simulatedHouse1 = {
+  commune: "Cocody",
+  typeMaisons: "MAISON BASSE",
+  typeHabitat: "HABITAT HAUT STANDING AVEC PISCINE",
+  nombrePieces: "4",
+  nombreSallesDeau: "3",
+  cour: ["COUR AVANT", "COUR ARRIERE"],
+  gardien: "AVEC GARDIEN",
+  garage: "AVEC GARAGE",
+  coverImage: "/couverture.jpg",
+  images: ["/photo1.jpg", "/photo2.jpg", "/photo3.jpg", "/photo4.jpg", "/photo5.jpg", "/photo6.jpg", "/photo7.jpg"],
+};
+
+const simulatedHouse2 = {
+  commune: "Cocody",
+  typeMaisons: "MAISON BASSE",
+  typeHabitat: "HABITAT HAUT STANDING AVEC PISCINE",
+  nombrePieces: "4",
+  nombreSallesDeau: "3",
+  cour: ["COUR AVANT", "COUR ARRIERE"],
+  gardien: "AVEC GARDIEN",
+  garage: "AVEC GARAGE",
+  coverImage: "/couverture.jpg",
+  images: ["/photo1.jpg", "/photo2.jpg", "/photo3.jpg", "/photo4.jpg", "/photo5.jpg", "/photo6.jpg", "/photo7.jpg"],
+};
+
 export default function Maison() {
-  const [zone, setZone] = useState("");
   const [showOptions, setShowOptions] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const [formData, setFormData] = useState({
     commune: "",
-    nombrePieces: "",
-    nombreSallesDeau: "",
     typeMaisons: "",
     typeHabitat: "",
+    nombrePieces: "",
+    nombreSallesDeau: "",
     cour: [],
     gardien: "",
     garage: "",
   });
+  const [showForm, setShowForm] = useState(true);
+  const [visite, setVisite] = useState(false);
+  const [selectedHouses, setSelectedHouses] = useState([]); // Ajout d'un état pour suivre les maisons sélectionnées
+
 
   const showOptionsContent = () => {
     setShowOptions(true);
@@ -44,16 +73,56 @@ export default function Maison() {
     setFormData(updatedData);
   };
 
+  const toggleVisite = () => {
+    setVisite(!visite);
+    setShowForm(false);
+    setShowTable(false);
+  };
+
+  const handleChoice = (choice) => {
+    // Vérifiez si les critères correspondent à l'une des maisons simulées
+    const isMatchingCriteria1 =
+      formData.commune === simulatedHouse1.commune &&
+      formData.typeMaisons === simulatedHouse1.typeMaisons &&
+      formData.typeHabitat === simulatedHouse1.typeHabitat &&
+      formData.nombrePieces === simulatedHouse1.nombrePieces &&
+      formData.nombreSallesDeau === simulatedHouse1.nombreSallesDeau &&
+      formData.cour.every((item) => simulatedHouse1.cour.includes(item)) &&
+      formData.gardien === simulatedHouse1.gardien &&
+      formData.garage === simulatedHouse1.garage;
+
+    const isMatchingCriteria2 =
+      formData.commune === simulatedHouse2.commune &&
+      formData.typeMaisons === simulatedHouse2.typeMaisons &&
+      formData.typeHabitat === simulatedHouse2.typeHabitat &&
+      formData.nombrePieces === simulatedHouse2.nombrePieces &&
+      formData.nombreSallesDeau === simulatedHouse2.nombreSallesDeau &&
+      formData.cour.every((item) => simulatedHouse2.cour.includes(item)) &&
+      formData.gardien === simulatedHouse2.gardien &&
+      formData.garage === simulatedHouse2.garage;
+
+    if (choice === "2 maisons") {
+      const selected = [];
+      if (isMatchingCriteria1) {
+        selected.push(simulatedHouse1);
+      }
+      if (isMatchingCriteria2) {
+        selected.push(simulatedHouse2);
+      }
+      setSelectedHouses(selected);
+    }
+  };
+
   const performSearch = () => {
-    // Envoyer les données au backend pour effectuer la recherche
-    // Vous devrez implémenter cette partie côté backend
     console.log("Formulaire soumis avec les données suivantes :");
     console.log(formData);
+
+    toggleVisite();
   };
 
   return (
     <RootLayout>
-      {showTable ? (
+      {showForm && showTable ? (
         <div className="table-container">
           <table>
             <tbody>
@@ -80,17 +149,6 @@ export default function Maison() {
                     <option value="Songon">Songon</option>
                     <option value="Yopougon">Yopougon</option>
                   </select>
-                </td>
-              </tr>
-              <tr>
-                <td>Préciser la zone</td>
-                <td>
-                  <input
-                    type="text"
-                    name="zone"
-                    value={zone}
-                    onChange={(e) => setZone(e.target.value)}
-                  />
                 </td>
               </tr>
               <tr>
@@ -195,7 +253,6 @@ export default function Maison() {
           <table>
             <tr>
               <td>COMMODITES ADDITIONNELLES</td>
-              <td>Ligne 1, Colonne 2</td>
             </tr>
             <tr>
               <td>COUR AVANT</td>
@@ -272,6 +329,16 @@ export default function Maison() {
           </table>
           <button onClick={performSearch}>Valider</button>
         </div>
+      ) : visite ? (
+        <div className="choice-page">
+          <p>Choisissez l&apos;option de visite :</p>
+          <button onClick={() => handleChoice("2 maisons")}>
+            2000 FCFA pour visiter 2 maisons
+          </button>
+          <button onClick={() => handleChoice("20 maisons")}>
+            5000 FCFA pour visiter 20 maisons
+          </button>
+        </div>
       ) : showOptions ? (
         <div className="options-container">
           <button className="location-button" onClick={showTableContent}>
@@ -282,21 +349,33 @@ export default function Maison() {
           </button>
         </div>
       ) : (
-        <div className="maison-link" onClick={showOptionsContent}>
+        <div className="maison-link" onClick={showOptionsContent} style={{ cursor: "pointer" }}>
           <p className="maison-text">Maison A louer</p>
-          <img
-            src="/Maison1.jpg"
-            alt="façade de la première maison"
-            className="maison-image-1"
-          />
-          <img
-            src="/Maison2.jpg"
-            alt="façade de la deuxième maison"
-            style={{ marginTop: "4rem" }}
-            className="maison-image-2"
-          />
+          <img src="/Maison1.jpg" alt="façade de la première maison" className="maison-image-1" />
+          <img src="/Maison2.jpg" alt="façade de la deuxième maison" style={{ marginTop: "4rem" }} className="maison-image-2" />
         </div>
       )}
+      {selectedHouses.map((house, index) => (
+        <div key={index} className="house-details">
+          <img src={house.coverImage} alt={`façade de la maison ${index + 1}`} />
+          <h3>Maison {index + 1}</h3>
+          <ul>
+            <li>Commune: {house.commune}</li>
+            <li>Type de maison: {house.typeMaisons}</li>
+            <li>Type d&apos;habitat: {house.typeHabitat}</li>
+            <li>Nombre de pièces: {house.nombrePieces}</li>
+            <li>Nombre de salles d&apos;eau: {house.nombreSallesDeau}</li>
+            <li>Commodités: {house.cour.join(", ")}</li>
+            <li>Gardien: {house.gardien}</li>
+            <li>Garage: {house.garage}</li>
+          </ul>
+          <div className="house-images">
+            {house.images.map((image, imgIndex) => (
+              <img key={imgIndex} src={image} alt={`Image ${imgIndex + 1}`} />
+            ))}
+          </div>
+        </div>
+      ))}
     </RootLayout>
   );
 }

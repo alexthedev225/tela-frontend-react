@@ -135,6 +135,36 @@ tr {
   td:not(:first-child) {
     flex: 1; /* Les autres colonnes prennent 50% de l'espace */
   }
+  /* Styles pour les détails de la maison sélectionnée */
+.house-details {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.house-details img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.house-details h3 {
+  font-size: 20px;
+}
+
+.house-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.house-details li {
+  margin: 0.5rem 0;
+}
+
 @media screen and (max-width: 800px) {
     .maison-image-1 {
         height: 400px;

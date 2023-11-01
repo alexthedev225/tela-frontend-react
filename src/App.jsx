@@ -5,12 +5,14 @@ import Home from "./pages/Home";
 import Contacts from "./pages/Contacts";
 import Maison from "./pages/Maison";
 import TelaTV from "./pages/TelaTv";
+import MaisonCreationForm from "./components/MaisonCreationForm";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path="/creer-maison" element={<MaisonCreationForm />} />
           <Route path="/" element={<Home />} />
           <Route path="/a-propos" element={<About />} />
           <Route path="/contact" element={<Contacts />} />
