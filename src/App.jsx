@@ -6,6 +6,7 @@ import Contacts from "./pages/Contacts";
 import Maison from "./pages/Maison";
 import TelaTV from "./pages/TelaTv";
 import MaisonCreationForm from "./components/MaisonCreationForm";
+import InscriptionForm from "./components/InscriptionForm";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/creer-maison" element={<MaisonCreationForm />} />
+          <Route path="/abonnement" element={<InscriptionForm />} />
           <Route path="/" element={<Home />} />
           <Route path="/a-propos" element={<About />} />
           <Route path="/contact" element={<Contacts />} />

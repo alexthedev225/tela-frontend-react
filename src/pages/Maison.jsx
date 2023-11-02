@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RootLayout from "../Layout";
 import "../styles/Maison.css";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const simulatedHouse1 = {
   commune: "Cocody",
@@ -12,7 +14,15 @@ const simulatedHouse1 = {
   gardien: "AVEC GARDIEN",
   garage: "AVEC GARAGE",
   coverImage: "/couverture.jpg",
-  images: ["/photo1.jpg", "/photo2.jpg", "/photo3.jpg", "/photo4.jpg", "/photo5.jpg", "/photo6.jpg", "/photo7.jpg"],
+  images: [
+    "/photo1.jpg",
+    "/photo2.jpg",
+    "/photo3.jpg",
+    "/photo4.jpg",
+    "/photo5.jpg",
+    "/photo6.jpg",
+    "/photo7.jpg",
+  ],
 };
 
 const simulatedHouse2 = {
@@ -25,10 +35,22 @@ const simulatedHouse2 = {
   gardien: "AVEC GARDIEN",
   garage: "AVEC GARAGE",
   coverImage: "/couverture.jpg",
-  images: ["/photo1.jpg", "/photo2.jpg", "/photo3.jpg", "/photo4.jpg", "/photo5.jpg", "/photo6.jpg", "/photo7.jpg"],
+  images: [
+    "/photo1.jpg",
+    "/photo2.jpg",
+    "/photo3.jpg",
+    "/photo4.jpg",
+    "/photo5.jpg",
+    "/photo6.jpg",
+    "/photo7.jpg",
+  ],
 };
 
 export default function Maison() {
+  const [selectedHouseIndex, setSelectedHouseIndex] = useState(0);
+
+  const [showImages, setShowImages] = useState(false);
+
   const [showOptions, setShowOptions] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const [formData, setFormData] = useState({
@@ -44,7 +66,6 @@ export default function Maison() {
   const [showForm, setShowForm] = useState(true);
   const [visite, setVisite] = useState(false);
   const [selectedHouses, setSelectedHouses] = useState([]); // Ajout d'un état pour suivre les maisons sélectionnées
-
 
   const showOptionsContent = () => {
     setShowOptions(true);
@@ -113,6 +134,7 @@ export default function Maison() {
     }
   };
 
+  
   const performSearch = () => {
     console.log("Formulaire soumis avec les données suivantes :");
     console.log(formData);
@@ -194,7 +216,10 @@ export default function Maison() {
                     type="radio"
                     name="typeHabitat"
                     value="HABITAT HAUT STANDING AVEC PISCINE"
-                    checked={formData.typeHabitat === "HABITAT HAUT STANDING AVEC PISCINE"}
+                    checked={
+                      formData.typeHabitat ===
+                      "HABITAT HAUT STANDING AVEC PISCINE"
+                    }
                     onChange={handleInputChange}
                   />
                 </td>
@@ -206,7 +231,10 @@ export default function Maison() {
                     type="radio"
                     name="typeHabitat"
                     value="HABITAT HAUT STANDING SANS PISCINE"
-                    checked={formData.typeHabitat === "HABITAT HAUT STANDING SANS PISCINE"}
+                    checked={
+                      formData.typeHabitat ===
+                      "HABITAT HAUT STANDING SANS PISCINE"
+                    }
                     onChange={handleInputChange}
                   />
                 </td>
@@ -349,31 +377,62 @@ export default function Maison() {
           </button>
         </div>
       ) : (
-        <div className="maison-link" onClick={showOptionsContent} style={{ cursor: "pointer" }}>
+        <div
+          className="maison-link"
+          onClick={showOptionsContent}
+          style={{ cursor: "pointer" }}
+        >
           <p className="maison-text">Maison A louer</p>
-          <img src="/Maison1.jpg" alt="façade de la première maison" className="maison-image-1" />
-          <img src="/Maison2.jpg" alt="façade de la deuxième maison" style={{ marginTop: "4rem" }} className="maison-image-2" />
+          <img
+            src="/Maison1.jpg"
+            alt="façade de la première maison"
+            className="maison-image-1"
+          />
+          <img
+            src="/Maison2.jpg"
+            alt="façade de la deuxième maison"
+            style={{ marginTop: "4rem" }}
+            className="maison-image-2"
+          />
         </div>
       )}
       {selectedHouses.map((house, index) => (
         <div key={index} className="house-details">
-          <img src={house.coverImage} alt={`façade de la maison ${index + 1}`} />
-          <h3>Maison {index + 1}</h3>
-          <ul>
-            <li>Commune: {house.commune}</li>
-            <li>Type de maison: {house.typeMaisons}</li>
-            <li>Type d&apos;habitat: {house.typeHabitat}</li>
-            <li>Nombre de pièces: {house.nombrePieces}</li>
-            <li>Nombre de salles d&apos;eau: {house.nombreSallesDeau}</li>
-            <li>Commodités: {house.cour.join(", ")}</li>
-            <li>Gardien: {house.gardien}</li>
-            <li>Garage: {house.garage}</li>
-          </ul>
-          <div className="house-images">
-            {house.images.map((image, imgIndex) => (
-              <img key={imgIndex} src={image} alt={`Image ${imgIndex + 1}`} />
+          {showImages && selectedHouseIndex  === index ? (
+           <Carousel
+           showThumbs={false}
+           showArrows={true}
+           showStatus={false}
+           infiniteLoop={true}
+           autoPlay={true} // Ajoutez cette option pour activer le défilement automatique
+           interval={5000} // Définissez l'intervalle entre les images en millisecondes (par exemple, 5 secondes)
+         >   {house.images.map((image, imageIndex) => (
+              <div key={imageIndex}>
+                <img src={image} alt={`Image ${imageIndex + 1}`} />
+              </div>
             ))}
-          </div>
+          </Carousel>
+          ) : (
+            <>
+              <div className="house-header" onClick={() => setShowImages(true)}>
+                <img
+                  src={house.coverImage}
+                  alt={`façade de la maison ${index + 1}`}
+                />
+                <h3>Maison {index + 1}</h3>
+              </div>
+              <ul>
+                <li>Commune: {house.commune}</li>
+                <li>Type de maison: {house.typeMaisons}</li>
+                <li>Type d'habitat: {house.typeHabitat}</li>
+                <li>Nombre de pièces: {house.nombrePieces}</li>
+                <li>Nombre de salles d'eau: {house.nombreSallesDeau}</li>
+                <li>Commodités: {house.cour.join(", ")}</li>
+                <li>Gardien: {house.gardien}</li>
+                <li>Garage: {house.garage}</li>
+              </ul>
+            </>
+          )}
         </div>
       ))}
     </RootLayout>

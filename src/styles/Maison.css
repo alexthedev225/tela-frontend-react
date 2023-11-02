@@ -164,6 +164,12 @@ tr {
 .house-details li {
   margin: 0.5rem 0;
 }
+.house-images-slider {
+  max-width: 100%;
+  overflow: hidden;
+  margin: 0 auto; /* Centre le contenu dans le conteneur */
+}
+
 
 @media screen and (max-width: 800px) {
     .maison-image-1 {

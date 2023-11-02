@@ -4,11 +4,12 @@ import "../styles/Home.css"; // Assurez-vous d'importer votre fichier de styles 
 
 function Home() {
   const images = [
-    "/SLIDE1.png",
-    "/SLIDE2.png",
+    "/SLIDE1.jpeg",
+    "/SLIDE2.jpg",
     "/SLIDE3.png",
     "/SLIDE4.png",
     "/SLIDE5.png",
+    "/SLIDE6.png"
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
