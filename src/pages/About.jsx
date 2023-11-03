@@ -11,7 +11,7 @@ function About() {
 
   return (
     <RootLayout>
-      <p style={{ color: "white" }}>
+      <p className="about-text">
         Dans le souci de participer activement au développement de notre pays et
         surtout faciliter la vie aux populations, nous n&apos;avons de cesse de
         réflechir et apporter notre contribution pour impacter positivement la

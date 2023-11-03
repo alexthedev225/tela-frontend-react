@@ -1,37 +1,99 @@
-.pub-image, .live-image {
-    height: 500px;
-    width: 400px;
-    object-fit: cover;
+.pub-image,
+.live-image,
+.emission-image,
+.rediffusion-image,
+.sport-image,
+.filmMusic-image {
+  height: 500px;
+  width: 400px;
+  object-fit: cover;
 }
-.pub-image:hover, .live-image:hover {
-    transition: all ease 0.3s;
-    height: 550px;
-    width: 450px;
+.live-image,
+.emission-image,
+.rediffusion-image,
+.sport-image,
+.filmMusic-image {
+  margin-top: 3rem;
 }
-.live-image {
-    margin-top: 5rem;
+.pub-image:hover,
+.live-image:hover,
+.emission-image:hover,
+.rediffusion-image:hover,
+.sport-image:hover,
+.filmMusic-image:hover {
+  transition: all ease 0.3s;
+  height: 550px;
+  width: 450px;
 }
+
+/* TelaTv.css */
+/* Style pour centrer les images */
+.pub-link,
+.live-link,
+.emission-link,
+.rediffusion-link,
+.sport-link,
+.filmMusic-link {
+  position: relative;
+}
+
+img[src="/jouer.png"] {
+  position: absolute;
+  top: 50%; /* Pour centrer verticalement */
+  left: 50%; /* Pour centrer horizontalement */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Pour centrer l'image par rapport à son propre centre */
+}
+
 @media screen and (max-width: 600px) {
-    .pub-image, .live-image {
-        height: 400px;
-        width: 300px;
-        object-fit: cover;
-    }
-    .pub-image:hover, .live-image:hover {
-        transition: all ease 0.3s;
-        height: 450px;
-        width: 350px;
-    }
+  .pub-image,
+  .live-image,
+  .emission-image,
+  .rediffusion-image,
+  .sport-image,
+  .filmMusic-image {
+    height: 400px;
+    width: 300px;
+    object-fit: cover;
+  }
+  img[src="/jouer.png"] {
+    height: 100px;
+  }
+  .pub-image:hover,
+  .live-image:hover,
+  .emission-image:hover,
+  .rediffusion-image:hover,
+  .sport-image:hover,
+  .filmMusic-image:hover {
+    transition: all ease 0.3s;
+    height: 450px;
+    width: 350px;
+  }
 }
 @media screen and (max-width: 400px) {
-    .pub-image, .live-image {
-        height: 300px;
-        width: 200px;
-        object-fit: cover;
-    }
-    .pub-image:hover, .live-image:hover {
-        transition: all ease 0.3s;
-        height: 450px;
-        width: 350px;
-    }
+  .pub-image,
+  .live-image,
+  .emission-image,
+  .rediffusion-image,
+  .sport-image,
+  .filmMusic-image {
+    height: 300px;
+    width: 200px;
+    object-fit: cover;
+  }
+  img[src="/jouer.png"] {
+    height: 80px;
+  }
+  .pub-image:hover,
+  .live-image:hover,
+  .emission-image:hover,
+  .rediffusion-image:hover,
+  .sport-image:hover,
+  .filmMusic-image:hover {
+    transition: all ease 0.3s;
+    height: 450px;
+    width: 350px;
+  }
 }

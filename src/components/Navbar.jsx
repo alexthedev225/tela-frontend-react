@@ -1,7 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "../styles/Navbar.css";
 
 export default function Navbar() {
+  const location = useLocation();
+
+  const isContactPage = location.pathname === "/contact";
+  const isTelaTVPage = location.pathname === "/tela-tv";
+
   return (
     <div className="navbar-container">
       <div className="navbar-box-container-top">
@@ -32,6 +37,12 @@ export default function Navbar() {
           Contacts
         </NavLink>
       </div>
+      {isContactPage || isTelaTVPage ? null : (
+        <h1 className="navbar-text">
+          TELA, la meilleure plateforme de recherche de logements et de bureaux
+          en Cote D&apos;Ivoire
+        </h1>
+      )}{" "}
     </div>
   );
 }

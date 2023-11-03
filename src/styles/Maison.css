@@ -1,125 +1,40 @@
-.maison-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-}
-.maison-image-1 {
-    height: 500px;
-}
-.maison-image-2 {
-    height: 350px;
-}
-.maison-link:hover .maison-image-1,
-.maison-link:hover .maison-image-2 {
-    transition: all ease 0.3s;
-}
-.maison-link:hover .maison-image-1 {
-    height: 600px;
-}
-.maison-link:hover .maison-image-2 {
-    height: 450px;
-}
-.maison-text {
-    transform: rotate(-20deg);
-    position: absolute;
-    top: 90%;
-    text-transform: uppercase;
-    font-size: 120px;
-    font-weight: bold;
-    text-align: center;
-    color: orange;
-}
 
-.popup-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Fond flou */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Assure que la popup est au premier plan */
-  }
-  
-  .popup {
-    background: white;
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-  }
-  
-  .popup h2 {
-    margin-top: 0;
-  }
-  
-  .popup button {
-    margin: 10px;
-  }
-  .button-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .location-button {
-    flex: 1;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .location-button.left {
-    background-color: #3498db; /* Couleur pour "Logement" */
-    border: 1px solid black;
-    color: white;
-  }
-  
-  .location-button.right {
-    border: 1px solid black;
-    background-color: #3498db; /* Couleur pour "Bureau" */
-    color: white;
-  }
-  
-  .close-button {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
   .table-container {
-    margin-top: 20px;
-    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
     border-collapse: collapse;
     width: 100%;
   }
 
   table {
+    border: 5px solid white;
     width: 100%;
+    background-color: white;
   }
   
   th, td {
-    border: 1px solid #ccc;
+    border: 1px solid white;
     padding: 8px;
     text-align: center;
   }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  tr:nth-child(odd) {
-    background-color: #fff;
-  }
+  /* Maison.css */
+/* Style pour les premiers <td> de chaque ligne */
+.table-container td:first-child {
+  font-weight: 600;
+  background-color: #2685d8; /* Bleu */
+  color: white; /* Texte en blanc */
+  padding: 5px; /* Espace autour du texte */
+}
+
+/* Style pour les deuxièmes <td> de chaque ligne */
+tr td:nth-child(2) {
+  background-color: #cfe9ff; /* Couleur blanche pour le deuxième <td> */
+}
+
+tr:nth-child(odd) td:nth-child(2) {
+  background-color: #a8d6ff; /* Couleur rouge pour les deuxièmes <td> des lignes impaires */
+}
+
   .select-container select option:first-child {
     display: none;
   }
@@ -127,7 +42,14 @@
 tr {
     display: flex;
   }
-  
+  td {
+    display: flex;
+  }
+  td:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   td:first-child {
     flex: 1; /* La première colonne prend tout l'espace */
   }
@@ -136,109 +58,56 @@ tr {
     flex: 1; /* Les autres colonnes prennent 50% de l'espace */
   }
   /* Styles pour les détails de la maison sélectionnée */
-.house-details {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.house-details img {
-  max-width: 100%;
-  height: auto;
-  margin-top: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.house-details h3 {
-  font-size: 20px;
-}
-
-.house-details ul {
-  list-style: none;
-  padding: 0;
-}
-
-.house-details li {
-  margin: 0.5rem 0;
-}
-.house-images-slider {
-  max-width: 100%;
-  overflow: hidden;
-  margin: 0 auto; /* Centre le contenu dans le conteneur */
-}
-
-
-@media screen and (max-width: 800px) {
-    .maison-image-1 {
-        height: 400px;
-    }
-    .maison-image-2 {
-        height: 250px;
-    }
-    .maison-link:hover .maison-image-1 {
-        height: 500px;
-    }
-    .maison-link:hover .maison-image-2 {
-        height: 350px;
-    }
-    .maison-text {
-        top: 80%;
-        font-size: 100px;
-    }
-}
-@media screen and (max-width: 600px) {
-    .maison-image-1 {
-        height: 300px;
-    }
-    .maison-image-2 {
-        height: 200px;
-    }
-    .maison-link:hover .maison-image-1 {
-        height: 400px;
-    }
-    .maison-link:hover .maison-image-2 {
-        height: 300px;
-    }
-    .maison-text {
-        font-size: 80px;
-    }
-}
-@media screen and (max-width: 500px) {
-    .maison-image-1 {
-        height: 250px;
-    }
-    .maison-image-2 {
-        height: 180px;
-    }
-    .maison-link:hover .maison-image-1 {
-        height: 350px;
-    }
-    .maison-link:hover .maison-image-2 {
-        height: 260px;
-    }
-    .maison-text {
-        top: 70%;
-        font-size: 60px;
-    }
-}
+  .options-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  
+  .location-button {
+    background-color: #1ee2fe;
+    /* color: white; */
+    border: none;
+    padding: 15px 40px;
+    margin: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .location-button:hover {
+    background-color: #009fb8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  .submit-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-end;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+  }
+  .submit-button img {
+    margin-top: 1rem;
+  }
+  .submit-button p {
+    font-size: 20px;
+  }
 @media screen and (max-width: 400px) {
-    .maison-image-1 {
-        height: 230px;
-    }
-    .maison-image-2 {
-        height: 160px;
-    }
-    .maison-link:hover .maison-image-1 {
-        height: 250px;
-    }
-    .maison-link:hover .maison-image-2 {
-        height: 180px;
-    }
-    .maison-text {
-        top: 70%;
-        font-size: 50px;
-    }
+  table {
+    border: 1px solid white;
+  }
 }
+  
+  
+  
+  
+
+  
+  
+  
+
