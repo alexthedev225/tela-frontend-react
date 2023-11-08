@@ -1,10 +1,16 @@
 .slider-container {
-    overflow: hidden;
-    width: 100%;
-  }
-  
-  .slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-  
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider {
+  width: 600%;
+  display: flex; /* Assurez-vous que les images s'affichent en ligne */
+  transition: transform 0.5s ease-in-out;
+}
+
+.slider img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}

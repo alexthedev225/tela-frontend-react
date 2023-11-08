@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import "../styles/Navbar.css";
 
 export default function Navbar() {
@@ -12,7 +12,8 @@ export default function Navbar() {
       <div className="navbar-box-container-top">
         <img src="/LOGO.png" alt="logo-tela" className="logo-tela" />
         <div className="button-registration">
-          <button>S&apos;abonner</button>
+          <Link to={'/inscription'}><button >S&apos;abonner</button></Link>
+          <Link to={'/connexion'}><button >Se connecter</button></Link>
           <button>Mon compte</button>
         </div>
       </div>

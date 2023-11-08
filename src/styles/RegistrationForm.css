@@ -1,0 +1,57 @@
+.registration-form-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.registration-form-container form {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  border: 3px solid #1ee2fe;
+  border-radius: 4px;
+  gap: 30px;
+  max-width: 80%; /* 80% de la largeur de l'écran */
+  width: 800px; /* Largeur fixe du formulaire */
+  margin: 0 auto; /* Centrage horizontal */
+  height: 80vh; /* 80% de la hauteur de l'écran */
+  justify-content: center; /* Centrage vertical */
+}
+.registration-form-container .text {
+  font-size: 45px;
+  color: #1ee2fe;
+}
+.input-field {
+  width: 80%;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.checkbox-label {
+  display: flex;
+  font-weight: bold;
+}
+.checkbox-label p {
+  color: white;
+  margin-right: 1rem;
+}
+.button {
+  background-color: #1ee2fe;
+  color: black;
+  font-weight: 600;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 4px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+
+.button:hover {
+  background-color: #009fb8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

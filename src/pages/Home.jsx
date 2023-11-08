@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import RootLayout from "../Layout";
-import "../styles/Home.css"; // Assurez-vous d'importer votre fichier de styles CSS
 
 function Home() {
   const images = [
@@ -9,39 +9,27 @@ function Home() {
     "/SLIDE3.png",
     "/SLIDE4.png",
     "/SLIDE5.png",
-    "/SLIDE6.png"
+    "/SLIDE6.png",
   ];
-
-  const [currentImage, setCurrentImage] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((currentImage + 1) % images.length);
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }, [currentImage, images.length]);
-
+  const interval = 10000;
   return (
     <RootLayout>
-      <div className="slider-container">
-        <div
-          className="slider"
-          style={{
-            transform: `translateX(-${currentImage * 100}%)`,
-            transition: "transform 0.5s ease-in-out",
-          }}
+      <div style={{ maxWidth: "100%", width: "100%" }}>
+        <Carousel
+          swipeable={false}
+          autoPlay
+          showArrows={true}
+          showStatus={false}
+          showThumbs={false}
+          infiniteLoop={true}
+          interval={interval}
         >
           {images.map((image, index) => (
-            <img
-              key={index}
-              src={image}
-              alt="slider"
-              width="100%"
-              style={{ objectFit: "contain" }}
-            />
+            <div key={index}>
+              <img src={image} alt={`Slide ${index}`} />
+            </div>
           ))}
-        </div>
+        </Carousel>
       </div>
     </RootLayout>
   );

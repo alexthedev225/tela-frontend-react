@@ -23,11 +23,11 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  width: 20rem;
+  width: 30rem;
 }
 .navbar-box-container-top .button-registration button {
   border: none;
-  height: 3rem;
+  height: 2.8rem;
   width: 9rem;
   color: black;
   font-weight: bold;
@@ -69,10 +69,8 @@
   .navbar-container {
     width: 100%;
   }
-}
-@media screen and (max-width: 900px) {
   .navbar-box-container-top .button-registration  {
-    width: 13rem;
+    width: 20rem;
   }
   .navbar-box-container-top .button-registration button {
     border: none;
@@ -81,11 +79,15 @@
     color: black;
     font-weight: bold;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 11px;
     background-color: orange;
     border-radius: 3rem;
   }
+  .link-container a {
+    font-size: 16px;
+  }
 }
+
 @media screen and (max-width: 800px) {
   .link-container a {
     font-size: 18px;
@@ -114,8 +116,6 @@
   .navbar-text {
     font-size: 20px;
   }
-}
-@media screen and (max-width: 500px) {
   .navbar-box-container-top .button-registration button {
     border: none;
     height: 2rem;
@@ -123,13 +123,15 @@
     color: black;
     font-weight: bold;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 10px;
     background-color: orange;
     border-radius: 3rem;
   }
   .navbar-box-container-top .button-registration {
-    width: 45%;
+    width: 16rem;
   }
+}
+@media screen and (max-width: 500px) {
   .logo-tela {
     height: 60px;
   }
@@ -144,16 +146,16 @@
   .navbar-box-container-top .button-registration button {
     border: none;
     height: 2rem;
-    width: 4.5rem;
+    width: 3.9rem;
     color: black;
     font-weight: bold;
     cursor: pointer;
-    font-size: 10px;
+    font-size: 8px;
     background-color: orange;
     border-radius: 3rem;
   }
   .navbar-box-container-top .button-registration {
-    width: 50%;
+    width: 13rem;
   }
   .link-container a {
     font-size: 10px;
