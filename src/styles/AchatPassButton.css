@@ -1,0 +1,33 @@
+/* Ajoutez ces styles à votre feuille de style (par exemple, AchatPassButton.css) */
+.achat-pass-button {
+    background-color: #1ee2fe;
+    /* color: white; */
+    border: none;
+    padding: 15px 0px;
+    margin-bottom: 40px;
+    text-align: center;
+    width: 15rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.achat-pass-button:hover {
+    background-color: #009fb8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    
+}
+
+.achat-pass-text {
+    margin: 0;
+}
+@media screen and (max-width: 500px) {
+    .achat-pass-button {
+        font-size: 12px;
+        padding: 13px 0px;
+        width: 10rem;
+    }
+}

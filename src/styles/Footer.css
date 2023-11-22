@@ -1,0 +1,18 @@
+.telatv-logo {
+    margin: 3rem 0 2rem 0;
+    object-fit: contain;
+    width: 700px;
+}
+
+@media screen and (max-height: 800px){
+    .telatv-logo {
+      width: 600px;
+    }
+      
+  }
+  @media screen and (max-width: 700px) {
+    .telatv-logo {
+      width: 100%;
+    }
+      
+  }

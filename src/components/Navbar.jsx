@@ -12,8 +12,15 @@ export default function Navbar() {
       <div className="navbar-box-container-top">
         <img src="/LOGO.png" alt="logo-tela" className="logo-tela" />
         <div className="button-registration">
-          <Link to={'/inscription'}><button >S&apos;abonner</button></Link>
-          <Link to={'/connexion'}><button >Se connecter</button></Link>
+        <Link to={"/identification"}>
+            <button>S&apos;identifier</button>
+          </Link>
+          <Link to={"/inscription"}>
+            <button>S&apos;abonner</button>
+          </Link>
+          <Link to={"/connexion"}>
+            <button>Se connecter</button>
+          </Link>
           <button>Mon compte</button>
         </div>
       </div>

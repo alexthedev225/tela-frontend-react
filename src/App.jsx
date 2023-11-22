@@ -8,6 +8,8 @@ import TelaTV from "./pages/TelaTv";
 import MaisonCreationForm from "./components/MaisonCreationForm";
 import RegistrationForm from "./components/RegistrationForm";
 import LoginForm from "./components/LoginForm";
+import AchatPassPage from "./pages/AchatPass";
+import InscriptionForm from "./components/InscriptionForm";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="/contact" element={<Contacts />} />
           <Route path="/maison-a-louer" element={<Maison />} />
           <Route path="/tela-tv" element={<TelaTV />} />
+          <Route path="/achat-pass" element={<AchatPassPage />} />
+          <Route path="/identification" element={<InscriptionForm />} />
         </Routes>
       </BrowserRouter>
     </div>

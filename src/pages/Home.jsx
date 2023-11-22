@@ -1,6 +1,9 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import RootLayout from "../Layout";
+import '../styles/Home.css'
+import AchatPassButton from "../components/AchatPassButton";
+import AjouterMaisonButton from "../components/AjouterMaison";
 
 function Home() {
   const images = [
@@ -14,7 +17,9 @@ function Home() {
   const interval = 10000;
   return (
     <RootLayout>
-      <div style={{ maxWidth: "100%", width: "100%" }}>
+      <AchatPassButton />
+      <AjouterMaisonButton />
+      <div className="slider-container">
         <Carousel
           swipeable={false}
           autoPlay
@@ -25,7 +30,7 @@ function Home() {
           interval={interval}
         >
           {images.map((image, index) => (
-            <div key={index}>
+            <div key={index} className="home-img-container">
               <img src={image} alt={`Slide ${index}`} />
             </div>
           ))}

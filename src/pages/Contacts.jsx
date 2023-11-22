@@ -13,14 +13,14 @@ export default function Contacts() {
             <div className="call-center">
               <p className="contact-text">Call center & PUB</p>
               <div className="contact-details">
-                <p>+225 27 22 22 22 22 22</p>
+                <p>+225 05 84 02 67 15</p>
                 <p>+225 07 00 00 00 00</p>
               </div>
             </div>
             <div className="whatsapp">
               <p className="contact-text">Whatsapp pour transfert de photos</p>
               <div className="contact-details">
-                <p>+225 05 00 00 00 00</p>
+                <p>+225 05 84 02 67 15</p>
                 <p>+225 01 00 00 00 00 00</p>
               </div>
             </div>

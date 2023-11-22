@@ -1,20 +1,42 @@
 import { useEffect, useState } from "react";
 import RootLayout from "../Layout";
 import "../styles/Maison.css";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export default function Maison() {
+  const interval = 10000;
+
   const [formData, setFormData] = useState({
-    commune: "",
-    typeMaisons: "",
-    typeHabitat: "",
-    nombrePieces: "",
-    nombreSallesDeau: "",
-    cour: [],
-    gardien: "",
-    garage: "",
+    commune_id: "", // Correspond à 'commune_id' dans la fonction de recherche Laravel
+    is_Appartment: "", // Correspond à 'is_Appartment' dans la fonction de recherche Laravel
+    is_MAISON_BASSE: "", // Correspond à 'is_MAISON_BASSE' dans la fonction de recherche Laravel
+    is_DUPLEX: "", // Correspond à 'is_DUPLEX' dans la fonction de recherche Laravel
+    is_HAUT_STANDING: "", // Correspond à 'is_HAUT_STANDING' dans la fonction de recherche Laravel
+    has_PISCINE: "", // Correspond à 'has_PISCINE' dans la fonction de recherche Laravel
+    has_GARDIEN: "", // Correspond à 'has_GARDIEN' dans la fonction de recherche Laravel
+    has_GARAGE: "", // Correspond à 'has_GARAGE' dans la fonction de recherche Laravel
+    has_balcon_avant: "", // Correspond à 'has_balcon_avant' dans la fonction de recherche Laravel
+    has_balcon_arriere: "", // Correspond à 'has_balcon_arriere' dans la fonction de recherche Laravel
+    nombre_piece: "", // Correspond à 'nombre_piece' dans la fonction de recherche Laravel
+    nombre_salle_eau: "", // Correspond à 'nombre_salle_eau' dans la fonction de recherche Laravel
+    has_COUR_AVANT: "", // Correspond à 'has_COUR_AVANT' dans la fonction de recherche Laravel
+    has_COUR_ARRIERE: "", // Correspond à 'has_COUR_ARRIERE' dans la fonction de recherche Laravel
   });
 
   const [showTable, setShowTable] = useState(false); // État pour contrôler la visibilité du tableau
+  const [results, setResults] = useState([]);
+  const [showResults, setShowResults] = useState(false);
+  const [searchType, setSearchType] = useState(""); // Ajout de la nouvelle propriété
+  const [selectedResult, setSelectedResult] = useState(null);
+
+  const showImagesSlider = (result) => {
+    setSelectedResult(result);
+  };
+
+  const closeImagesSlider = () => {
+    setSelectedResult(null);
+  };
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -38,242 +60,333 @@ export default function Maison() {
   useEffect(() => {
     setShowTable(false);
   }, []);
-  const performSearch = () => {
-    console.log("Formulaire soumis avec les données suivantes :");
-    console.log(formData);
+
+  const performSearch = async () => {
+    try {
+      let endpoint =
+        "http://127.0.0.1/telaweb_app/public/api/places/searchplace";
+
+      if (searchType === "bureau") {
+        endpoint =
+          "http://127.0.0.1/telaweb_app/public/api/places/searchbureau";
+      }
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      setResults(data); // Mettre à jour l'état des résultats
+      setShowResults(true); // Afficher les résultats après la recherche
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <RootLayout>
-      {showTable ? (
-        <div className="table-container">
-          <table>
-            <tbody>
-              <tr>
-                <td>COMMUNE</td>
-                <td>
-                  <select
-                    name="commune"
-                    value={formData.commune}
-                    onChange={handleInputChange}
+      {showResults ? (
+        <div className="results-container">
+          <h2>Résultats de la recherche :</h2>
+          {results.length > 0 ? (
+            <ul>
+              {results.map((result, index) => (
+                <li key={index}>
+                  
+                  <div
+                    onClick={() => {
+                      showImagesSlider(result);
+                      setShowResults(false);
+                    }}
                   >
-                    <option value="" disabled></option>
-                    <option value="Abobo">Abobo</option>
-                    <option value="Adjamé">Adjamé</option>
-                    <option value="Anyama">Anyama</option>
-                    <option value="Attécoubé">Attécoubé</option>
-                    <option value="Bingerville">Bingerville</option>
-                    <option value="Cocody">Cocody</option>
-                    <option value="Koumassi">Koumassi</option>
-                    <option value="Marcory">Marcory</option>
-                    <option value="Plateau">Plateau</option>
-                    <option value="Port bouët">Port bouët</option>
-                    <option value="Treichville">Treichville</option>
-                    <option value="Songon">Songon</option>
-                    <option value="Yopougon">Yopougon</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>MAISON BASSE</td>
-                <td>
-                  <input
-                    type="radio"
-                    name="typeMaisons"
-                    value="MAISON BASSE"
-                    checked={formData.typeMaisons === "MAISON BASSE"}
-                    onChange={handleInputChange}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>APPARTEMENT</td>
-                <td>
-                  <input
-                    type="radio"
-                    name="typeMaisons"
-                    value="APPARTEMENT"
-                    checked={formData.typeMaisons === "APPARTEMENT"}
-                    onChange={handleInputChange}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>DUPLEX</td>
-                <td>
-                  <input
-                    type="radio"
-                    name="typeMaisons"
-                    value="DUPLEX"
-                    checked={formData.typeMaisons === "DUPLEX"}
-                    onChange={handleInputChange}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>HABITAT HAUT STANDING AVEC PISCINE</td>
-                <td>
-                  <input
-                    type="radio"
-                    name="typeHabitat"
-                    value="HABITAT HAUT STANDING AVEC PISCINE"
-                    checked={
-                      formData.typeHabitat ===
-                      "HABITAT HAUT STANDING AVEC PISCINE"
-                    }
-                    onChange={handleInputChange}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>HABITAT HAUT STANDING SANS PISCINE</td>
-                <td>
-                  <input
-                    type="radio"
-                    name="typeHabitat"
-                    value="HABITAT HAUT STANDING SANS PISCINE"
-                    checked={
-                      formData.typeHabitat ===
-                      "HABITAT HAUT STANDING SANS PISCINE"
-                    }
-                    onChange={handleInputChange}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>NOMBRE DE PIECES</td>
-                <td>
-                  <select
-                    name="nombrePieces"
-                    value={formData.nombrePieces}
-                    onChange={handleInputChange}
-                  >
-                    <option value="" disabled></option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>NOMBRE DE SALLE D&apos;EAU</td>
-                <td>
-                  <select
-                    name="nombreSallesDeau"
-                    value={formData.nombreSallesDeau}
-                    onChange={handleInputChange}
-                  >
-                    <option value="" disabled></option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table>
-            <tr>
-              <td>COMMODITES ADDITIONNELLES</td>
-            </tr>
-            <tr>
-              <td>COUR AVANT</td>
-              <td>
-                <input
-                  type="checkbox"
-                  name="cour"
-                  value="COUR AVANT"
-                  checked={formData.cour.includes("COUR AVANT")}
-                  onChange={handleInputChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>COUR ARRIERE</td>
-              <td>
-                <input
-                  type="checkbox"
-                  name="cour"
-                  value="COUR ARRIERE"
-                  checked={formData.cour.includes("COUR ARRIERE")}
-                  onChange={handleInputChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>AVEC GARDIEN</td>
-              <td>
-                <input
-                  type="radio"
-                  name="gardien"
-                  value="AVEC GARDIEN"
-                  checked={formData.gardien === "AVEC GARDIEN"}
-                  onChange={handleInputChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>SANS GARDIEN</td>
-              <td>
-                <input
-                  type="radio"
-                  name="gardien"
-                  value="SANS GARDIEN"
-                  checked={formData.gardien === "SANS GARDIEN"}
-                  onChange={handleInputChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>AVEC GARAGE</td>
-              <td>
-                <input
-                  type="radio"
-                  name="garage"
-                  value="AVEC GARAGE"
-                  checked={formData.garage === "AVEC GARAGE"}
-                  onChange={handleInputChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>SANS GARAGE</td>
-              <td>
-                <input
-                  type="radio"
-                  name="garage"
-                  value="SANS GARAGE"
-                  checked={formData.garage === "SANS GARAGE"}
-                  onChange={handleInputChange}
-                />
-              </td>
-            </tr>
-          </table>
-          <button onClick={performSearch} className="submit-button">
-            <img src="/verifie.png" alt="" />
-            <p>Validez</p>
+                    <img src={result.image} alt="Couverture" />
+                  </div>
+                  <p>{results.description}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>Aucun résultat trouvé.</p>
+          )}
+          <button
+            onClick={() => {
+              setShowResults(false);
+            }}
+          >
+            Revenir en arrière
           </button>
         </div>
       ) : (
-        <div className="options-container">
-          <button
-            className="location-button"
-            onClick={() => setShowTable(true)}
+        <>
+          {showTable ? (
+            <div className="table-container">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>COMMUNE</td>
+                    <td>
+                      <select
+                        name="commune_id"
+                        value={formData.commune_id}
+                        onChange={handleInputChange}
+                      >
+                        <option value="" disabled></option>
+                        <option value="Abobo">Abobo</option>
+                        <option value="Adjamé">Adjamé</option>
+                        <option value="Anyama">Anyama</option>
+                        <option value="Attécoubé">Attécoubé</option>
+                        <option value="Bingerville">Bingerville</option>
+                        <option value="Cocody">Cocody</option>
+                        <option value="Koumassi">Koumassi</option>
+                        <option value="Marcory">Marcory</option>
+                        <option value="Plateau">Plateau</option>
+                        <option value="Port bouët">Port bouët</option>
+                        <option value="Treichville">Treichville</option>
+                        <option value="Songon">Songon</option>
+                        <option value="Yopougon">Yopougon</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>MAISON BASSE</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        name="is_MAISON_BASSE"
+                        checked={formData.is_MAISON_BASSE}
+                        onChange={handleInputChange}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>APPARTEMENT</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        name="is_Appartment"
+                        checked={formData.is_Appartment}
+                        onChange={handleInputChange}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>DUPLEX</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        name="is_DUPLEX"
+                        checked={formData.is_DUPLEX}
+                        onChange={handleInputChange}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>HABITAT HAUT STANDING</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        name="is_HAUT_STANDING"
+                        checked={formData.is_HAUT_STANDING}
+                        onChange={handleInputChange}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>AVEC PISCINE</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        name="has_PISCINE"
+                        checked={formData.has_PISCINE}
+                        onChange={handleInputChange}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>NOMBRE DE PIECES</td>
+                    <td>
+                      <select
+                        name="nombre_piece"
+                        value={formData.nombre_piece}
+                        onChange={handleInputChange}
+                      >
+                        <option value="" disabled></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>NOMBRE DE SALLE D&apos;EAU</td>
+                    <td>
+                      <select
+                        name="nombre_salle_eau"
+                        value={formData.nombre_salle_eau}
+                        onChange={handleInputChange}
+                      >
+                        <option value="" disabled></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table>
+                <tr>
+                  <td>COMMODITES ADDITIONNELLES</td>
+                </tr>
+                <tr>
+                  <td>COUR AVANT</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      name="has_COUR_AVANT"
+                      checked={formData.has_COUR_AVANT}
+                      onChange={handleInputChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>COUR ARRIERE</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      name="has_COUR_ARRIERE"
+                      checked={formData.has_COUR_ARRIERE}
+                      onChange={handleInputChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>BALCON AVANT</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      name="has_balcon_avant"
+                      checked={formData.has_balcon_avant}
+                      onChange={handleInputChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>BALCON ARRIÈRE</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      name="has_balcon_arriere"
+                      checked={formData.has_balcon_arriere}
+                      onChange={handleInputChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>AVEC GARDIEN</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      name="has_GARDIEN"
+                      checked={formData.has_GARDIEN}
+                      onChange={handleInputChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>AVEC GARAGE</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      name="has_GARAGE"
+                      checked={formData.has_GARAGE}
+                      onChange={handleInputChange}
+                    />
+                  </td>
+                </tr>
+              </table>
+              <button onClick={performSearch} className="submit-button">
+                <img src="/verifie.png" alt="" />
+                <p>Validez</p>
+              </button>
+            </div>
+          ) : (
+            !selectedResult && (
+              <div className="options-container">
+                <button
+                  className="location-button"
+                  onClick={() => {
+                    setShowTable(true);
+                    setSearchType("logement");
+                  }}
+                >
+                  Logement
+                </button>
+                <button
+                  className="location-button"
+                  onClick={() => {
+                    setShowTable(true);
+                    setSearchType("bureau");
+                  }}
+                >
+                  Bureau
+                </button>
+              </div>
+            )
+          )}
+        </>
+      )}
+      {selectedResult && (
+        <div className="images-slider-container">
+          <Carousel
+            swipeable={false}
+            autoPlay
+            showArrows={true}
+            showStatus={false}
+            showThumbs={false}
+            infiniteLoop={true}
+            interval={interval}
           >
-            Logement
-          </button>
+            {selectedResult.images.map((image, index) => (
+              <div key={index}>
+                <img src={image} alt={`Image ${index + 2}`} />
+              </div>
+            ))}
+          </Carousel>
+          {/* Afficher toutes les autres données en dessous du carrousel */}
+          <div className="other-data-container">
+            <h3>Autres données :</h3>
+            <p>Commune: {selectedResult.commune}</p>
+            <p>Type de maison: {selectedResult.typeMaisons}</p>
+            <p>Type d&apos;habitat: {selectedResult.typeHabitat}</p>
+            <p>Nombre de pièces: {selectedResult.nombrePieces}</p>
+            <p>
+              Nombre de salles d&apos;eau: {selectedResult.nombreSallesDeau}
+            </p>
+            <p>Cour: {selectedResult.cour.join(", ")}</p>
+            <p>Balcon: {selectedResult.balcon.join(", ")}</p>
+            <p>Gardien: {selectedResult.gardien}</p>
+            <p>Garage: {selectedResult.garage}</p>
+          </div>
           <button
-            className="location-button"
-            onClick={() => setShowTable(true)}
+            onClick={() => {
+              closeImagesSlider();
+              setShowResults(true);
+            }}
           >
-            Bureau
+            Fermer le slider
           </button>
         </div>
       )}

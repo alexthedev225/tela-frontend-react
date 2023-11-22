@@ -13,8 +13,7 @@
   flex-direction: column;
   border: 3px solid #1ee2fe;
   border-radius: 4px;
-  gap: 30px;
-  max-width: 80%; /* 80% de la largeur de l'écran */
+  gap: 20px;
   width: 800px; /* Largeur fixe du formulaire */
   margin: 0 auto; /* Centrage horizontal */
   height: 80vh; /* 80% de la hauteur de l'écran */
@@ -54,4 +53,55 @@
 .button:hover {
   background-color: #009fb8;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+/* ... (autres styles) */
+
+.photo-label {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  width: 80%;
+  color: white;
+  font-weight: bold;
+}
+
+.photo-input {
+  margin-top: 8px;
+  width: 100%;
+  border: 2px solid white;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* ... (autres styles) */
+
+@media screen and (max-width: 900px) {
+  .registration-form-container form {
+
+    width: 90vw;
+  }
+
+}
+@media screen and (max-height: 750px) {
+  .registration-form-container form {
+    height: 90vh;
+  }
+}
+@media screen and (max-height: 600px) {
+  .registration-form-container form {
+    gap: 20px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .registration-form-container .text {
+    font-size: 40px;
+  }
+  .input-field {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .registration-form-container .text {
+    font-size: 35px;
+  }
 }

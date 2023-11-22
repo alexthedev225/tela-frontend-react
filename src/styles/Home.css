@@ -1,16 +1,17 @@
 .slider-container {
-  width: 100%;
+  width: 700px;
   overflow: hidden;
 }
 
-.slider {
-  width: 600%;
-  display: flex; /* Assurez-vous que les images s'affichent en ligne */
-  transition: transform 0.5s ease-in-out;
+@media screen and (max-height: 800px){
+  .slider-container {
+    width: 600px;
+  }
+    
 }
-
-.slider img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+@media screen and (max-width: 700px) {
+  .slider-container {
+    width: 100%;
+  }
+    
 }

@@ -1,12 +1,14 @@
-import { useState } from 'react';
-import '../styles/RegistrationForm.css'
-import '../styles/LoginForm.css'
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import "../styles/RegistrationForm.css";
+import "../styles/LoginForm.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
-    phone: '',
-    password: '',
+    phone: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -19,33 +21,24 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      // Envoyez les données au backend pour la connexion
-      // Assurez-vous que le backend gère la validation et l'authentification.
-      // Vous pouvez utiliser fetch ou Axios pour cela.
-
-      // Exemple avec fetch :
-      const response = await fetch('URL_DU_BACKEND/login', {
-        method: 'POST',
+      await fetch("http://127.0.0.1/telaweb_app/public/api/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-
-      if (response.ok) {
-        // La connexion a réussi, redirigez l'utilisateur ou effectuez d'autres actions.
-      } else {
-        // Gérez les erreurs de connexion, affichez un message d'erreur, etc.
-      }
+      alert('Connexion avec succes')
+      navigate('/')
     } catch (error) {
-      console.error('Une erreur est survenue :', error);
+      console.error("Une erreur est survenue :", error);
     }
   };
 
   return (
     <div className="login-form-container">
-    <form onSubmit={handleSubmit}>
-    <h1 className="text">Connexion</h1>
+      <form onSubmit={handleSubmit}>
+        <h1 className="text">Connexion</h1>
         <input
           type="text"
           name="phone"
@@ -65,9 +58,13 @@ const LoginForm = () => {
           placeholder="Mot de passe"
         />
 
-      <button type="submit" className="button">Connexion</button>
-    </form>
-    <Link to={'/'} style={{ color : 'white', fontWeight : 'bold'}}>Retourner a la page d&apos;acceuil</Link>
+        <button type="submit" className="button">
+          Connexion
+        </button>
+      </form>
+      <Link to={"/"} style={{ color: "white", fontWeight: "bold" }}>
+        Retourner a la page d&apos;acceuil
+      </Link>
     </div>
   );
 };

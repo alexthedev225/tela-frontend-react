@@ -13,7 +13,7 @@
     flex-direction: column;
     border: 3px solid #1ee2fe;
     border-radius: 4px;
-    gap: 40px;
+    gap: 50px;
     max-width: 80%; /* 80% de la largeur de l'écran */
     width: 800px; /* Largeur fixe du formulaire */
     margin: 0 auto; /* Centrage horizontal */
@@ -23,4 +23,37 @@
   .login-form-container .text {
     font-size: 45px;
     color: #1ee2fe;
+  }
+  @media screen and (max-width: 900px) {
+    .login-form-container form {
+  
+      width: 90vw;
+    }
+  
+  }
+  @media screen and (max-width: 700px) {
+    .login-form-container form {
+      gap: 40px;
+      width: 90vw;
+    }
+  
+  }
+  @media screen and (max-width: 500px) {
+    .login-form-container form {
+      height: 70vh;
+    }
+    .login-form-container .text {
+      font-size: 40px;
+    }
+    .input-field {
+      width: 90%;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .login-form-container .text {
+      font-size: 35px;
+    }
+    .login-form-container form {
+      gap: 30px;
+    }
   }
