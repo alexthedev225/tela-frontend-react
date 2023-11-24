@@ -7,7 +7,7 @@
   width: 100%;
 }
 .navbar-box-container-top, .link-container {
-  border-bottom: 5px solid orange;
+  border-bottom: 3px solid black;
 }
 .navbar-container > * {
   display: flex;
@@ -17,7 +17,9 @@
   height: 100px;
 }
 .navbar-box-container-top {
-  padding: 0.5rem 0 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0px;
 }
 .navbar-box-container-top .button-registration {
   display: flex;
@@ -33,16 +35,18 @@
   font-weight: bold;
   cursor: pointer;
   font-size: 16px;
-  background-color: orange;
+  border: 3px solid black;
+  background-color: white;
   border-radius: 3rem;
+  transition: all ease 0.3s;
 }
 .navbar-box-container-top .button-registration button:hover {
-  transition: all ease 0.3s;
-  background-color: rgb(223, 145, 0);
+  color:#1e9dfe;
+  border: 3px solid #1e9dfe;
 }
 .link-container {
   margin-top: 4rem;
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
   margin-bottom: 2rem;
 }
 .link-container a {
@@ -53,35 +57,112 @@
 }
 .link-container a:hover {
   transition: all ease 0.2s;
-  color: white;
+  color: #1e9dfe;
 }
 .navbar-container .active {
-  color: white;
+  color: #1e9dfe;
 }
 .navbar-text {
   font-family: "Aref Ruqaa Ink", serif;
   text-align: center;
-  color: white;
+  align-self: center;
+  color: black;
+}
+.menu-items {
+  display: none;
+  justify-content: space-evenly;
+  padding: 13rem 0;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border: none;
+  
+}
+.menu-items button {
+  height: 2.8rem;
+  width: 9rem;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  border: 3px solid black;
+  background-color: white;
+  border-radius: 3rem;
+  transition: all ease 0.3s;
+}
+
+.close-button {
+  align-self: flex-end;
+  cursor: pointer;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.show-menu {
+  display: flex;
+}
+
+.burger-menu-button {
+  display: none;
+  z-index: 2;
+}
+
+.burger-line {
+  width: 30px;
+  height: 3px;
+  background-color: #333;
+  margin: 5px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.burger-menu-button.close .burger-line:nth-child(1) {
+  transform: translateY(15px) rotate(45deg);
+}
+
+.burger-menu-button.close .burger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu-button.close .burger-line:nth-child(3) {
+  transform: translateY(-15px) rotate(-45deg);
 }
 
 
+@media screen and (max-width: 1300px) {
+  .burger-menu-button {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+  }
+  .navbar-box-container-top {
+    align-items: center;
+  }
+  .navbar-box-container-top .button-registration {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 1100px) {
+  .burger-menu-button {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+  }
   .navbar-container {
     width: 100%;
-  }
-  .navbar-box-container-top .button-registration  {
-    width: 20rem;
-  }
-  .navbar-box-container-top .button-registration button {
-    border: none;
-    height: 2.5rem;
-    width: 6rem;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 11px;
-    background-color: orange;
-    border-radius: 3rem;
   }
   .link-container a {
     font-size: 16px;
@@ -116,17 +197,7 @@
   .navbar-text {
     font-size: 20px;
   }
-  .navbar-box-container-top .button-registration button {
-    border: none;
-    height: 2rem;
-    width: 5rem;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 10px;
-    background-color: orange;
-    border-radius: 3rem;
-  }
+ 
   .navbar-box-container-top .button-registration {
     width: 16rem;
   }
@@ -143,17 +214,7 @@
   }
 }
 @media screen and (max-width: 400px) {
-  .navbar-box-container-top .button-registration button {
-    border: none;
-    height: 2rem;
-    width: 3.9rem;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 8px;
-    background-color: orange;
-    border-radius: 3rem;
-  }
+
   .navbar-box-container-top .button-registration {
     width: 13rem;
   }

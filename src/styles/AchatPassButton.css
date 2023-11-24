@@ -1,6 +1,6 @@
 /* Ajoutez ces styles à votre feuille de style (par exemple, AchatPassButton.css) */
 .achat-pass-button {
-    background-color: #1ee2fe;
+    background-color: #1e9dfe;
     /* color: white; */
     border: none;
     padding: 15px 0px;
@@ -9,14 +9,14 @@
     width: 15rem;
     font-weight: bold;
     text-decoration: none;
-    color: black;
+    color: white;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .achat-pass-button:hover {
-    background-color: #009fb8;
+    background-color: #1369ab;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     
 }

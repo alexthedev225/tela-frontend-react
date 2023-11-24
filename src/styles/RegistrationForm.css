@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
-  border: 3px solid #1ee2fe;
+  border: 3px solid #1e9dfe;
   border-radius: 4px;
   gap: 20px;
   width: 800px; /* Largeur fixe du formulaire */
@@ -21,11 +21,11 @@
 }
 .registration-form-container .text {
   font-size: 45px;
-  color: #1ee2fe;
+  color: #1e9dfe;
 }
 .input-field {
   width: 80%;
-  border: 1px solid #ccc;
+  border: 2px solid #1e9dfe;
   padding: 8px;
   border-radius: 4px;
 }
@@ -35,12 +35,15 @@
   font-weight: bold;
 }
 .checkbox-label p {
-  color: white;
+  color: #1e9dfe;
   margin-right: 1rem;
 }
+.checkbox-label input{
+  border: 2px solid #1e9dfe;
+}
 .button {
-  background-color: #1ee2fe;
-  color: black;
+  background-color: #1e9dfe;
+  color: white;
   font-weight: 600;
   border: none;
   padding: 15px 40px;
@@ -61,14 +64,15 @@
   flex-direction: column;
   /* align-items: center; */
   width: 80%;
-  color: white;
+  color: #1e9dfe;
   font-weight: bold;
 }
 
 .photo-input {
   margin-top: 8px;
   width: 100%;
-  border: 2px solid white;
+  color: gray;
+  border: 2px solid #1e9dfe;
   padding: 8px;
   border-radius: 4px;
 }

@@ -8,14 +8,14 @@ const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     nom: "",
     prenoms: "",
-    email: "",
+    // email: "",
     phone: "",
     photo: "",
     password: "",
     confirmPassword: "",
     is_demarcheur: false,
-    is_staff: false,
-    is_suspended: false,
+    // is_staff: false,
+    // is_suspended: false,
   });
 
   const [validationErrors, setValidationErrors] = useState({
@@ -54,7 +54,6 @@ const RegistrationForm = () => {
     const fieldsToValidate = [
       "nom",
       "prenoms",
-      "email",
       "phone",
       "password",
       "confirmPassword",
@@ -87,28 +86,22 @@ const RegistrationForm = () => {
     }
 
     try {
-      const dataToSend = {
-        nom: formData.nom,
-        prenoms: formData.prenoms,
-        email: formData.email,
-        phone: formData.phone,
-        password: formData.password,
-        is_demarcheur: formData.is_demarcheur,
-        is_staff: formData.is_staff,
-        is_suspended: formData.is_suspended,
-        photo: formData.photo,
-      };
+      const dataToSend = new FormData();
+      dataToSend.append("nom", formData.nom);
+      dataToSend.append("prenoms", formData.prenoms);
+      dataToSend.append("phone", formData.phone);
+      dataToSend.append("password", formData.password);
+      dataToSend.append("is_demarcheur", formData.is_demarcheur);
+  
+      // Ajoutez la photo au FormData
+      dataToSend.append("photo", formData.photo);
 
       // Envoi des données au serveur
       const response = await fetch(
         "http://127.0.0.1/telaweb_app/public/api/users/create",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(dataToSend),
+          body: dataToSend,
         }
       );
 
@@ -125,7 +118,7 @@ const RegistrationForm = () => {
 
   return (
     <div className="registration-form-container">
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form onSubmit={handleSubmit}>
         <h1 className="text">Inscription</h1>
 
         {/* Champ Nom avec validation */}
@@ -155,7 +148,7 @@ const RegistrationForm = () => {
         )}
 
         {/* Champ Email avec validation */}
-        <input
+        {/* <input
           type="email"
           name="email"
           placeholder="Adresse e-mail"
@@ -167,7 +160,7 @@ const RegistrationForm = () => {
           <p className="error-message">
             Veuillez entrer une adresse e-mail valide.
           </p>
-        )}
+        )} */}
 
         {/* Champ Numéro de téléphone avec validation */}
         <input
@@ -243,7 +236,7 @@ const RegistrationForm = () => {
       </form>
 
       {/* Lien de retour à la page d'accueil */}
-      <Link to={"/"} style={{ color: "white", fontWeight: "bold" }}>
+      <Link to={"/"} style={{ color: "black", fontWeight: "bold" }}>
         Retourner à la page d&apos;accueil
       </Link>
     </div>

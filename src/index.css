@@ -6,6 +6,12 @@
   margin: 0;
   font-family: 'Montserrat', sans-serif;
 }
+
 body {
-  background-color: rgba(0, 78, 180, 0.849);
+  background-color: white;
 }
+
+.no-scroll {
+  overflow: hidden;
+}
+

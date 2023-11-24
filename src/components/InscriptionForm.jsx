@@ -4,18 +4,18 @@ import { Link } from "react-router-dom";
 
 function InscriptionForm() {
   const [formData, setFormData] = useState({
-    nomComplet: "",
-    lieuNaissance: "",
-    dateNaissance: "",
+    name: "",
+    lieu_naissance: "",
+    date_naissance: "",
     genre: "",
     pays: "",
     nationalite: "",
-    domicileActuel: "",
-    passportCNI_Recto: "",
-    passportCNI_Verso: "",
-    numeroTelephone1: "",
-    numeroTelephone2: "",
-    dateInscription: new Date().toISOString().substr(0, 10),
+    domicile: "",
+    cni_recto: "",
+    cni_verso: "",
+    phone1: "",
+    phone2: "",
+    numero_cni: ""
   });
 
   const handleChange = (e) => {
@@ -45,19 +45,19 @@ function InscriptionForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
-    formDataToSend.append("nomComplet", formData.nomComplet);
-    formDataToSend.append("lieuNaissance", formData.lieuNaissance);
-    formDataToSend.append("dateNaissance", formData.dateNaissance);
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("lieuNaissance", formData.lieu_naissance);
+    formDataToSend.append("dateNaissance", formData.date_naissance);
     formDataToSend.append("genre", formData.genre);
     formDataToSend.append("pays", formData.pays);
     formDataToSend.append("nationalite", formData.nationalite);
-    formDataToSend.append("domicileActuel", formData.domicileActuel);
-    formDataToSend.append("passportCNI_Recto", formData.passportCNI_Recto);
-    formDataToSend.append("passportCNI_Verso", formData.passportCNI_Verso);
-    formDataToSend.append("numeroTelephone1", formData.numeroTelephone1);
-    formDataToSend.append("numeroTelephone2", formData.numeroTelephone2);
-    formDataToSend.append("dateInscription", formData.dateInscription);
-
+    formDataToSend.append("domicileActuel", formData.domicile);
+    formDataToSend.append("passportCNI_Recto", formData.cni_recto);
+    formDataToSend.append("passportCNI_Verso", formData.cni_verso);
+    formDataToSend.append("numeroTelephone1", formData.phone1);
+    formDataToSend.append("numeroTelephone2", formData.phone2);
+    formDataToSend.append("numero_cni", formData.numero_cni);
+    
     try {
       // Effectuez une requête POST vers l'API backend
       const response = await fetch("URL_DU_BACKEND", {

@@ -1,7 +1,8 @@
 .telatv-logo {
     margin: 3rem 0 2rem 0;
     object-fit: contain;
-    width: 700px;
+    width: 600px;
+    height: 100px;
 }
 
 @media screen and (max-height: 800px){

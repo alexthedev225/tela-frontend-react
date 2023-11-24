@@ -1,9 +1,16 @@
+
 .slider-container {
   width: 700px;
-  overflow: hidden;
 }
-
-@media screen and (max-height: 800px){
+.home-img-container {
+  height: max-content;
+  width: 100%;
+}
+.home-img-container img{
+  object-fit: contain;
+  height: 100%;
+}
+@media screen and (min-height: 800px){
   .slider-container {
     width: 600px;
   }

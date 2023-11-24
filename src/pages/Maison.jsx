@@ -12,6 +12,9 @@ export default function Maison() {
     is_Appartment: "", // Correspond à 'is_Appartment' dans la fonction de recherche Laravel
     is_MAISON_BASSE: "", // Correspond à 'is_MAISON_BASSE' dans la fonction de recherche Laravel
     is_DUPLEX: "", // Correspond à 'is_DUPLEX' dans la fonction de recherche Laravel
+    is_Studio: "", // Correspond à 'is_Studio' dans la fonction de recherche Laravel
+    is_Chambre: "", // Correspond à 'is_Chambre' dans la fonction de recherche Laravel
+    is_Residence: "", // Correspond à 'is_Residence' dans la fonction de recherche Laravel
     is_HAUT_STANDING: "", // Correspond à 'is_HAUT_STANDING' dans la fonction de recherche Laravel
     has_PISCINE: "", // Correspond à 'has_PISCINE' dans la fonction de recherche Laravel
     has_GARDIEN: "", // Correspond à 'has_GARDIEN' dans la fonction de recherche Laravel
@@ -80,7 +83,7 @@ export default function Maison() {
       });
 
       const data = await response.json();
-
+      console.log(data)
       setResults(data); // Mettre à jour l'état des résultats
       setShowResults(true); // Afficher les résultats après la recherche
     } catch (error) {
@@ -136,19 +139,19 @@ export default function Maison() {
                         onChange={handleInputChange}
                       >
                         <option value="" disabled></option>
-                        <option value="Abobo">Abobo</option>
-                        <option value="Adjamé">Adjamé</option>
-                        <option value="Anyama">Anyama</option>
-                        <option value="Attécoubé">Attécoubé</option>
-                        <option value="Bingerville">Bingerville</option>
-                        <option value="Cocody">Cocody</option>
-                        <option value="Koumassi">Koumassi</option>
-                        <option value="Marcory">Marcory</option>
-                        <option value="Plateau">Plateau</option>
-                        <option value="Port bouët">Port bouët</option>
-                        <option value="Treichville">Treichville</option>
-                        <option value="Songon">Songon</option>
-                        <option value="Yopougon">Yopougon</option>
+                        <option value="1">Abobo</option>
+                        <option value="2">Adjamé</option>
+                        <option value="3">Anyama</option>
+                        <option value="4">Attécoubé</option>
+                        <option value="5">Bingerville</option>
+                        <option value="6">Cocody</option>
+                        <option value="7">Koumassi</option>
+                        <option value="8">Marcory</option>
+                        <option value="9">Plateau</option>
+                        <option value="10">Port bouët</option>
+                        <option value="11">Treichville</option>
+                        <option value="12">Songon</option>
+                        <option value="13">Yopougon</option>
                       </select>
                     </td>
                   </tr>
@@ -170,6 +173,39 @@ export default function Maison() {
                         type="checkbox"
                         name="is_Appartment"
                         checked={formData.is_Appartment}
+                        onChange={handleInputChange}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Studio</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        name="is_Studio"
+                        checked={formData.is_Studio}
+                        onChange={handleInputChange}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>CHAMBRE</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        name="is_Chambre"
+                        checked={formData.is_Chambre}
+                        onChange={handleInputChange}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>RESIDENCE</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        name="is_Residence"
+                        checked={formData.is_Residence}
                         onChange={handleInputChange}
                       />
                     </td>

@@ -21,14 +21,16 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      await fetch("http://127.0.0.1/telaweb_app/public/api/login", {
+     const response = await fetch("http://127.0.0.1/telaweb_app/public/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-      alert('Connexion avec succes')
+      const responseData = await response.json();
+      console.log("Données renvoyées par le serveur:", responseData);
+      // alert('Connexion avec succes')
       navigate('/')
     } catch (error) {
       console.error("Une erreur est survenue :", error);
