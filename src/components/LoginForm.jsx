@@ -2,6 +2,8 @@ import { useState } from "react";
 import "../styles/RegistrationForm.css";
 import "../styles/LoginForm.css";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
+
 
 const LoginForm = () => {
   const navigate = useNavigate()
@@ -21,20 +23,26 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-     const response = await fetch("http://127.0.0.1/telaweb_app/public/api/login", {
+      const response = await fetch("http://127.0.0.1/telaweb_app/public/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
+    
       const responseData = await response.json();
       console.log("Données renvoyées par le serveur:", responseData);
-      // alert('Connexion avec succes')
-      navigate('/')
+    
+      // Stocke le token dans un cookie sécurisé
+      Cookies.set('token', responseData.token, { secure: true, sameSite: 'strict' });
+    
+      // Redirige l'utilisateur vers la page d'accueil
+      navigate('/');
     } catch (error) {
       console.error("Une erreur est survenue :", error);
     }
+    
   };
 
   return (

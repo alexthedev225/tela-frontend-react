@@ -1,8 +1,12 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../styles/Navbar.css";
+import LogoutButton from "./LogoutButton";
+import Cookies from "js-cookie";
 
 export default function Navbar() {
+  const token = Cookies.get("token");
+
   const location = useLocation();
   const [isMenuOpen, setMenuOpen] = useState(false);
   const isContactPage = location.pathname === "/contact";
@@ -26,18 +30,6 @@ export default function Navbar() {
     <div className="navbar-container">
       <div className="navbar-box-container-top">
         <img src="/LOGO.png" alt="logo-tela" className="logo-tela" />
-        <div className="button-registration">
-          <Link to={"/identification"}>
-            <button>S&apos;identifier</button>
-          </Link>
-          <Link to={"/inscription"}>
-            <button>S&apos;abonner</button>
-          </Link>
-          <Link to={"/connexion"}>
-            <button>Se connecter</button>
-          </Link>
-          <button>Mon compte</button>
-        </div>
         <button
           className={`burger-menu-button ${isMenuOpen ? "close" : ""}`}
           onClick={toggleMenu}
@@ -54,32 +46,37 @@ export default function Navbar() {
           <Link to={"/inscription"} onClick={toggleMenu}>
             <button>S&apos;abonner</button>
           </Link>
-          <Link to={"/connexion"} onClick={toggleMenu}>
-            <button>Se connecter</button>
-          </Link>
+          {token ? (
+            <LogoutButton onClick={toggleMenu}/>
+          ) : (
+            <Link to={"/connexion"} onClick={toggleMenu}>
+              <button>Se connecter</button>
+            </Link>
+          )}
+
           <Link to={"/mon-compte"} onClick={toggleMenu}>
             <button>Mon compte</button>
           </Link>
         </div>
       </div>
       <div className="link-container">
-        <NavLink to={"/"} activeClassName="active">
+        <NavLink to={"/"} activeclassname="active">
           Accueil
         </NavLink>
 
-        <NavLink to={"/a-propos"} activeClassName="active">
+        <NavLink to={"/a-propos"} activeclassname="active">
           A propos
         </NavLink>
 
-        <NavLink to={"/maison-a-louer"} activeClassName="active">
+        <NavLink to={"/maison-a-louer"} activeclassname="active">
           Maison à louer
         </NavLink>
 
-        <NavLink to={"/tela-tv"} activeClassName="active">
+        <NavLink to={"/tela-tv"} activeclassname="active">
           TELA TV
         </NavLink>
 
-        <NavLink to={"/contact"} activeClassName="active">
+        <NavLink to={"/contact"} activeclassname="active">
           Contacts
         </NavLink>
       </div>

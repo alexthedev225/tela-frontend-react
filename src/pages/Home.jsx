@@ -4,8 +4,11 @@ import RootLayout from "../Layout";
 import '../styles/Home.css'
 import AchatPassButton from "../components/AchatPassButton";
 import AjouterMaisonButton from "../components/AjouterMaison";
+import Cookies from "js-cookie";
 
 function Home() {
+  const token = Cookies.get('token')
+  console.log(token)
   const images = [
     "/SLIDE1.jpeg",
     "/SLIDE2.jpg",
@@ -18,7 +21,7 @@ function Home() {
   return (
     <RootLayout>
       <AchatPassButton />
-      <AjouterMaisonButton />
+      {token && <AjouterMaisonButton />}
       <div className="slider-container">
         <Carousel
           swipeable={false}

@@ -19,6 +19,7 @@
 .navbar-box-container-top {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0.5rem 0px;
 }
 .navbar-box-container-top .button-registration {
@@ -30,7 +31,7 @@
 .navbar-box-container-top .button-registration button {
   border: none;
   height: 2.8rem;
-  width: 9rem;
+  width: 10rem;
   color: black;
   font-weight: bold;
   cursor: pointer;
@@ -86,8 +87,8 @@
   
 }
 .menu-items button {
-  height: 2.8rem;
-  width: 9rem;
+  height: 2.9rem;
+  width: 11rem;
   color: black;
   font-weight: bold;
   cursor: pointer;
@@ -108,9 +109,13 @@
 .show-menu {
   display: flex;
 }
-
 .burger-menu-button {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 10px;
   z-index: 2;
 }
 
@@ -136,14 +141,7 @@
 
 
 @media screen and (max-width: 1300px) {
-  .burger-menu-button {
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 10px;
-  }
+
   .navbar-box-container-top {
     align-items: center;
   }
